@@ -18,9 +18,19 @@ RUN apt-get -y install htop
 # 3) install packages using notebook user
 USER jovyan
 
+WORKDIR /app
+
+RUN conda create -n entwine -c conda-forge entwine
+
 # RUN conda install -y scikit-learn
 
 RUN pip install --no-cache-dir networkx scipy
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]
+
+RUN echo "source activate entwine" >> ~/.bashrc
+ENV PATH /opt/conda/envs/entwine/bin:$PATH
+
+CMD ["bash", "entwine_builder.sh"]
+
