@@ -31,6 +31,5 @@ RUN pip install --no-cache-dir networkx scipy
 
 RUN echo "source activate entwine" >> ~/.bashrc
 ENV PATH /opt/conda/envs/entwine/bin:$PATH
-
-CMD ["bash", "entwine_builder.sh"]
+RUN pip install globus-cli
 
